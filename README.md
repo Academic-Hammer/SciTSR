@@ -1,4 +1,4 @@
-# SciTSR: A Large-scale Table Structure Recognition Dataset from Scientific Papers
+# SciTSR: Table Structure Recognition Dataset from Scientific Papers
 
 ## Introduction
 
