@@ -1,10 +1,10 @@
-# SciTSR: Table Structure Recognition Dataset from Scientific Papers
+# SciTSR
 
 ## Introduction
 
 SciTSR is a large-scale table structure recognition dataset, which contains 15,000 tables in PDF format and their corresponding structure labels obtained from LaTeX source files.
 
-**Download link:** is [here](https://drive.google.com/file/d/1qXaJblBg9sbPN0xknWsYls1aGGtlp4ZN/view?usp=sharing).
+**Download link** is [here](https://drive.google.com/file/d/1qXaJblBg9sbPN0xknWsYls1aGGtlp4ZN/view?usp=sharing).
 
 There are 15,000 examples in total, and we split 12,000 for training and 3,000 for test. We also provide the test set that only contains complicated tables, called SciTSR-COMP. The indices of SciTSR-COMP is stored in `SciTSR-COMP.list`.
 
