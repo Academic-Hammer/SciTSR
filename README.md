@@ -85,7 +85,7 @@ For RELATION_ID, 1 and 2 represents horizontal and vertical, respectively.
 ```
 0	1	1:0
 1	2	1:0
-0	9 2:0
+0	9   2:0
 ...
 ```
 
