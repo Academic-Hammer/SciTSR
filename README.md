@@ -83,9 +83,9 @@ A line of `CHUNK_ID_1 CHUNK_ID_2 RELATION_ID:NUM_BLANK` represents the relation 
 For RELATION_ID, 1 and 2 represents horizontal and vertical, respectively.
 
 ```
-0	1	1:0
-1	2	1:0
-0	9   2:0
+0 1 1:0
+1 2 1:0
+0 9 2:0
 ...
 ```
 
