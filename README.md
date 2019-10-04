@@ -124,6 +124,26 @@ A table is stored as a list of cells. For each cell, we provide its original tex
 ]}
 ```
 
+## Evaluation
+
+In the evaluation procedure, a table should be converted to a list of horizontally/vertically adjacent relations. Then we make a comparison between ground truth relations and output relations.
+
+We release the evaluation scripts for comparing horizontally and vertically adjacent relations. In the following example (`./examples/eval.py`), we show how to use the scripts to calculate precision/recall/F1 for an output table.
+
+
+
+```python
+with open(json_path) as fp: json_obj = json.load(fp)
+# convert the structure labels (a table in json format) to a list of relations
+ground_truth_relations = json2Relations(json_obj, splitted_content=True)
+# your_relations should be a List of Relation.
+# Here we directly use the ground truth relations in the example.
+your_relations = ground_truth_relations
+precision, recall = eval_relations(
+  gt=[ground_truth_relations], res=[your_relations], cmp_blank=True)
+```
+
+Note: Your output tables should be represented as `List[Relation]`. You can also store a table as a `Table` object and then convert it to `List[Relation]` by using `scitsr.eval.Table2Relations`.
 
 ## Citation
 
