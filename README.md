@@ -124,7 +124,19 @@ A table is stored as a list of cells. For each cell, we provide its original tex
 ]}
 ```
 
-## Evaluation
+## Implementation Details
+
+### Features
+
+The codes for vertex and edge features are at `./scitsr/graph.py`.
+
+You can get vertex features by `Vertex(vid, chunk, tab_h, tab_w).features` and edge features by `Edge(vertex1, vertex2).features`.
+
+`tab_h` and `tab_w` denotes the height (y-axis) and width (x-axis) of the table.
+
+See `./scitsr/graph.py` for more details.
+
+### Evaluation
 
 In the evaluation procedure, a table should be converted to a list of horizontally/vertically adjacent relations. Then we make a comparison between ground truth relations and output relations.
 
