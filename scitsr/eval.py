@@ -16,6 +16,17 @@ DIR_VERT = 2
 DIR_SAME_CELL = 3
 
 
+def normalize(s:str, rule=0):
+  if rule == 0:
+    s = s.replace("\r", "")
+    s = s.replace("\n", "")
+    s = s.replace(" ", "")
+    s = s.replace("\t", "")
+    return s.upper()
+  else:
+    raise NotImplementedError
+
+
 def eval_relations(gt:List[List], res:List[List], cmp_blank=True):
   """Evaluate results
 
