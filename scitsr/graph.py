@@ -33,7 +33,7 @@ class Vertex(object):
       "y1": self.chunk.y1,
       "y2": self.chunk.y2,
       "x center": (self.chunk.x1 + self.chunk.x2) / 2,
-      "y center": (self.chunk.y2 + self.chunk.y2) / 2,
+      "y center": (self.chunk.y1 + self.chunk.y2) / 2,
       "relative x1": self.chunk.x1 / self.tab_w,
       "relative x2": self.chunk.x2 / self.tab_w,
       "relative y1": self.chunk.y1 / self.tab_h,
