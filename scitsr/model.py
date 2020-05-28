@@ -26,6 +26,7 @@ class Attention(torch.nn.Module):
     )
     self.layer_norm_2 = torch.nn.LayerNorm(size)
     self.d_rate = 0.4
+    self.dropout = torch.nn.Dropout(self.d_rate)
 
   def masked_softmax(self, x, mask, dim):
     ex = torch.exp(x)
@@ -51,11 +52,11 @@ class Attention(torch.nn.Module):
     score = self.masked_softmax(score, mask, dim=1)
     x_atten = torch.mm(score, v)
     # dropout
-    x_atten = torch.nn.functional.dropout(x_atten, p=self.d_rate)
+    x_atten = self.dropout(x_atten)
     x = self.layer_norm_1(x + x_atten)
     x_linear = self.feed_forward(x)
     # dropout
-    x_linear = torch.nn.functional.dropout(x_linear, p=self.d_rate)
+    x_linear = self.dropout(x_linear)
     x = self.layer_norm_2(x + x_linear)
     return x
 
