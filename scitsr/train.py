@@ -142,11 +142,41 @@ class Trainer:
         if data.labels is not None:
             data.labels = data.labels.to(self.device)
 
+            
+def patch_chunks(dataset_folder):
+	"""
+	To patch the all chunk files of the train & test dataset that have the problem of duplicate last character
+	of the last cell in all chunk files
+	:param dataset_folder: train dataset path
+	:return: 1
+	"""
+	import os
+	import shutil
+	from pathlib import Path
+
+	shutil.move(os.path.join(dataset_folder, "chunk"), os.path.join(dataset_folder, "chunk-old"))
+	dir_ = Path(os.path.join(dataset_folder, "chunk-old"))
+	os.makedirs(os.path.join(dataset_folder, "chunk"), exist_ok=True)
+
+	for chunk_path in dir_.iterdir():
+		# print(chunk_path)
+		with open(str(chunk_path), encoding="utf-8") as f:
+			chunks = json.load(f)['chunks']
+		chunks[-1]['text'] = chunks[-1]['text'][:-1]
+
+		with open(str(chunk_path).replace("chunk-old", "chunk"), "w", encoding="utf-8") as ofile:
+			json.dump({"chunks": chunks}, ofile)
+	print("Input files patched, ready for the use")
+	return 1
+
 
 if __name__ == '__main__':
 
     train_path = "/path/to/train_folder"
     test_path = "/path/to/test_folder/"
+    patch_chunks(train_path)
+    patch_chunks(test_path)
+    
     train_dataset = TableDataset(
         train_path, with_cells=False, exts=["chunk", "rel"])
     node_norm, edge_norm = train_dataset.node_norm, train_dataset.edge_norm
