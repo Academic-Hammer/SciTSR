@@ -61,14 +61,7 @@ def chunks2rel(ds_dir, rel_dir, chunk_ds="chunk", cell_ds="json"):
   for fid, (ch_json, cell_json) in tqdm(utils.ds_iter(ds_dir, [chunk_ds, cell_ds])):
 
     try:
-      chunks = []
-			for cd in ch_json["chunks"][:-1]:
-				chunks.append(Chunk.load_from_dict(cd))
-			tmp = Chunk.load_from_dict(ch_json["chunks"][-1])
-      # Fix: The last cell of the chunk in all files have an issue of duplicate last character
-      tmp.text = tmp.text[:-1]
-			chunks.append(tmp)
-      
+      chunks = [Chunk.load_from_dict(cd) for cd in ch_json["chunks"]]
       table = utils.json2Table(cell_json, fid, splitted_content=True)
     except Exception as e:
       print(e)
