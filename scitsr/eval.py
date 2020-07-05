@@ -49,7 +49,7 @@ def eval_relations(gt:List[List], res:List[List], cmp_blank=True):
   for _gt, _res in zip(gt, res):
     idx += 1
     print('Eval %d/%d (%d%%)' % (idx, t, idx / t * 100), ' ' * 45, end='\r')
-    corr = compare_rel(_gt, _res)
+    corr = compare_rel(_gt, _res, cmp_blank)
     precision = corr / len(_res) if len(_res) != 0 else 0
     recall = corr / len(_gt) if len(_gt) != 0 else 0
     tot_prec += precision
